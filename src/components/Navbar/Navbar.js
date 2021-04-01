@@ -13,6 +13,8 @@ import logo from '../../assets/images/hogash-logo-black.png';
 // navbar styles
 import './Navbar.scss';
 
+import { toggleSideCart,toggleSidebar } from './../../redux/sidebar/sidebar_actions';
+
 const Navbar = () => {
   
   const { cart } = useSelector((state) => state.products);
@@ -71,7 +73,7 @@ const Navbar = () => {
               </li>
               <li className="site-header__icons-item">
                 <CgShoppingBag
-                  onClick={() => dispatch()}
+                  onClick={() => dispatch(toggleSideCart())}
                   style={{ cursor: 'pointer' }}
                 />
                 <span className="site-header__cart-count">{cartCount}</span>
@@ -79,7 +81,7 @@ const Navbar = () => {
               <li className="site-header__icons-item">
                 <FaBars
                   className="site-header__toggle"
-                  onClick={() => dispatch()}
+                  onClick={() => dispatch(toggleSidebar())}
                 />
               </li>
             </ul>
