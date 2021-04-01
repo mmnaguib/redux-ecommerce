@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 
 import productsReducer from './products/products_reducers';
 import sidebarReducer from './sidebar/sidebar_reducers';
+import counterReducers from './counter/counter_reducers';
 const persistConfig = {
   key: 'root',
   storage,
@@ -12,7 +13,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   products: productsReducer,
-  sidebar: sidebarReducer
+  sidebar: sidebarReducer,
+  counter: counterReducers
 });
 
 export default persistReducer(persistConfig, rootReducer);

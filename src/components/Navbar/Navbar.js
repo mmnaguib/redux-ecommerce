@@ -76,7 +76,7 @@ const Navbar = () => {
                   onClick={() => dispatch(toggleSideCart())}
                   style={{ cursor: 'pointer' }}
                 />
-                <span className="site-header__cart-count">{cartCount}</span>
+                <span className="site-header__cart-count">{cart.length}</span>
               </li>
               <li className="site-header__icons-item">
                 <FaBars

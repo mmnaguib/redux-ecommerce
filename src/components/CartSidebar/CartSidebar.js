@@ -11,7 +11,7 @@ import { removeFromCart } from '../../redux/products/products_actions';
 import cartEmptyImg from '../../assets/images/cart-empty.jpg';
 
 import './CartSidebar.scss';
-
+import { increase, decrease } from './../../redux/counter/counter_actions';
 const CartSidebar = () => {
   const { cart } = useSelector((state) => state.products);
   const { sideCartOpen } = useSelector((state) => state.sidebar);
@@ -28,7 +28,6 @@ const CartSidebar = () => {
 
     setTotalPrice(price);
   }, [cart, totalPrice, setTotalPrice]);
-
   return (
     <div
       className={
@@ -47,7 +46,8 @@ const CartSidebar = () => {
           </span>
         </div>
         <div className="cart-sidebar__content">
-          {cart.length > 0 ? (
+          {cart !== undefined? 
+          (cart.length > 0 ? (
             cart.map((item) => {
               return (
                 <div key={item.id} className="cart-sidebar__products">
@@ -71,6 +71,12 @@ const CartSidebar = () => {
                         />
                       </p>
                     </div>
+                    <div>
+                      
+                      <button onClick={() => dispatch(decrease(item.qty))}>-</button>
+                        {item.qty}
+                      <button onClick={() => dispatch(increase(item.qty))}>+</button>
+                    </div>
                   </div>
                 </div>
               );
@@ -83,8 +89,9 @@ const CartSidebar = () => {
                 alt="cart is empty"
               />
             </div>
-          )}
+          )) : null}
         </div>
+
         <div className="cart-sidebar__footer">
           Total: {formatPrice(totalPrice)}{' '}
         </div>
